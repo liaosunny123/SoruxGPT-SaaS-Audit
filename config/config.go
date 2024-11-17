@@ -7,14 +7,15 @@ import (
 )
 
 var (
-	PORT           = 8080
-	ForbiddenWords = []string{} // 禁止词
-	OAIKEY         = ""         // OAIKEY
-	OAIKEYLOG      = ""         // OAIKEYLOG 隐藏
-	MODERATION     = ""
-	ShareUrl       = ""
-	PlusModels     = garray.NewStrArrayFrom([]string{"gpt-4", "gpt-4o", "gpt-4-browsing", "gpt-4-plugins", "gpt-4-mobile", "gpt-4-code-interpreter", "gpt-4-dalle", "gpt-4-gizmo", "gpt-4-magic-create", "o1-preview", "o1-mini"})
-	AdminApiKey    = ""
+	PORT             = 8080
+	ForbiddenWords   = []string{} // 禁止词
+	OAIKEY           = ""         // OAIKEY
+	OAIKEYLOG        = ""         // OAIKEYLOG 隐藏
+	MODERATION       = ""
+	ShareUrl         = ""
+	PlusModels       = garray.NewStrArrayFrom([]string{"gpt-4", "gpt-4o", "gpt-4-browsing", "gpt-4-plugins", "gpt-4-mobile", "gpt-4-code-interpreter", "gpt-4-dalle", "gpt-4-gizmo", "gpt-4-magic-create", "o1-preview", "o1-mini"})
+	AdminApiKey      = ""
+	SyncAdmitPostUrl = ""
 )
 
 func init() {
@@ -49,4 +50,10 @@ func init() {
 		AdminApiKey = adminApiKey
 	}
 	g.Log().Info(ctx, "ADMIN_API_KEY:", AdminApiKey)
+
+	syncAdmitPostUrl := g.Cfg().MustGetWithEnv(ctx, "SYNC_ADMIT_POST_URL").String()
+	if syncAdmitPostUrl != "" {
+		SyncAdmitPostUrl = syncAdmitPostUrl
+	}
+	g.Log().Info(ctx, "SYNC_ADMIT_POST_URL:", SyncAdmitPostUrl)
 }

@@ -74,6 +74,35 @@ func AuditLimit(r *ghttp.Request) {
 		})
 		return
 	}
+
+	if respJson.Get("data.list.0.userToken").String() != token {
+		r.Response.Status = 200
+		r.Response.WriteJson(g.Map{
+			"detail": g.Map{
+				"message": "无效的激活码",
+			},
+		})
+		return
+	}
+
+	if !respJson.Get("data.list.0.deleted_at").IsNil() {
+		r.Response.Status = 200
+		r.Response.WriteJson(g.Map{
+			"code": 0,
+			"msg":  "激活码已被删除！",
+		})
+		return
+	}
+
+	if respJson.Get("data.list.0.expireTime").Time().Before(time.Now()) {
+		r.Response.Status = 200
+		r.Response.WriteJson(g.Map{
+			"code": 0,
+			"msg":  "激活码已过期！",
+		})
+		return
+	}
+
 	plusMode := respJson.Get("data.list.0.isPlus").Bool()
 
 	if !plusMode && config.PlusModels.Contains(model) {
