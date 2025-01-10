@@ -13,7 +13,7 @@ var (
 	OAIKEYLOG        = ""         // OAIKEYLOG 隐藏
 	MODERATION       = ""
 	ShareUrl         = ""
-	PlusModels       = garray.NewStrArrayFrom([]string{"gpt-4", "gpt-4o", "gpt-4-browsing", "gpt-4-plugins", "gpt-4-mobile", "gpt-4-code-interpreter", "gpt-4-dalle", "gpt-4-gizmo", "gpt-4-magic-create", "o1-preview", "o1-mini", "video_gen"})
+	PlusModels       = garray.NewStrArrayFrom([]string{"gpt-4", "gpt-4o", "gpt-4-browsing", "gpt-4-plugins", "gpt-4-mobile", "gpt-4-code-interpreter", "gpt-4-dalle", "gpt-4-gizmo", "gpt-4-magic-create", "o1-preview", "o1-mini", "video_gen", "o1", "o1-pro"})
 	AdminApiKey      = ""
 	SyncAdmitPostUrl = ""
 )
